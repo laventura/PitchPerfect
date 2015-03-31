@@ -20,13 +20,6 @@ class PlaySoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if var filePath = NSBundle.mainBundle().pathForResource("Box-of-chocolates", ofType: "mp3") {
-//            var filePathUrl = NSURL.fileURLWithPath(filePath)
-//            
-//        } else {
-//            println("file path is empty")
-//        }
-        
         audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
         audioPlayer.enableRate = true
         
@@ -36,24 +29,30 @@ class PlaySoundsViewController: UIViewController {
         // init AudioFile
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
 
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    // stop all audio and reset
+    func stopAllAudio() {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
     
     func refreshAndPlay(rate:Float) {
-        audioPlayer.stop()
+        stopAllAudio()
         audioPlayer.currentTime = 0.0
         audioPlayer.rate = rate
         audioPlayer.play()
     }
     
+    
+    
     @IBAction func playSlowAudio(sender: UIButton) {
-        //TODO: play audio slooowly
+        
         refreshAndPlay(0.5) // play 0.5x the normal speed
     }
 
@@ -62,7 +61,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopAudio(sender: AnyObject) {
-        audioPlayer.stop()
+        stopAllAudio()
     }
     
     @IBAction func playChipmunkEffect(sender: AnyObject) {
@@ -76,10 +75,7 @@ class PlaySoundsViewController: UIViewController {
     // helper func to play variable pitch sound effects
     func playAudioWithVariablePitch(pitch: Float) {
        
-        // reset everything first
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllAudio()
         
         // create AudioPlayerNode
         var audioPlayerNode = AVAudioPlayerNode()
