@@ -109,16 +109,22 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5J-0j-vdy">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Slow" image="slow">
+                                <state key="normal" image="slow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="49" y="110" width="130" height="100"/>
+                                </variation>
                                 <connections>
                                     <action selector="playSlowAudio:" destination="udO-cw-Ozw" eventType="touchUpInside" id="ipB-8m-0m0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuB-qc-KGr">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Fast" image="fast"/>
+                                <state key="normal" image="fast"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="236" y="110" width="130" height="100"/>
+                                </variation>
                                 <connections>
                                     <action selector="playFastAudio:" destination="udO-cw-Ozw" eventType="touchUpInside" id="Y2m-Rs-sME"/>
                                 </connections>
@@ -132,55 +138,61 @@
                                     <action selector="stopAudio:" destination="udO-cw-Ozw" eventType="touchUpInside" id="pge-09-1mE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocI-em-2W1">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Darth" image="darthvader">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playDarthEffect:" destination="udO-cw-Ozw" eventType="touchUpInside" id="JCH-8Y-2Ar"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiu-kL-Glh">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Chipmunk" image="chipmunk">
+                                <state key="normal" image="chipmunk">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="49" y="298" width="130" height="100"/>
+                                </variation>
                                 <connections>
                                     <action selector="playChipmunkEffect:" destination="udO-cw-Ozw" eventType="touchUpInside" id="z7p-3I-m6B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocI-em-2W1">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="darthvader">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="236" y="298" width="130" height="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="playDarthEffect:" destination="udO-cw-Ozw" eventType="touchUpInside" id="JCH-8Y-2Ar"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tiu-kL-Glh" firstAttribute="leading" secondItem="7ZB-CS-7sn" secondAttribute="leadingMargin" constant="26" id="4dM-UN-av2"/>
+                            <constraint firstItem="ocI-em-2W1" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="234" id="5Sj-h3-fdS"/>
                             <constraint firstItem="AYb-Ly-Px1" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="425" id="8xZ-Nz-O2l"/>
-                            <constraint firstItem="o5J-0j-vdy" firstAttribute="leading" secondItem="7ZB-CS-7sn" secondAttribute="leadingMargin" constant="26" id="9c7-cd-f0Z"/>
                             <constraint firstAttribute="centerX" secondItem="AYb-Ly-Px1" secondAttribute="centerX" constant="-2" id="BPG-iu-F5q"/>
-                            <constraint firstItem="o5J-0j-vdy" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="40" id="C8A-NT-UsZ"/>
-                            <constraint firstItem="ocI-em-2W1" firstAttribute="leading" secondItem="tiu-kL-Glh" secondAttribute="trailing" constant="11" id="ECp-7P-GHI"/>
-                            <constraint firstItem="ocI-em-2W1" firstAttribute="top" secondItem="LuB-qc-KGr" secondAttribute="bottom" constant="94" id="Fac-Mu-oYY"/>
-                            <constraint firstItem="tiu-kL-Glh" firstAttribute="top" secondItem="o5J-0j-vdy" secondAttribute="bottom" constant="94" id="PQq-Bq-qVM"/>
-                            <constraint firstItem="LuB-qc-KGr" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="40" id="kGw-S1-GpQ"/>
-                            <constraint firstItem="LuB-qc-KGr" firstAttribute="leading" secondItem="o5J-0j-vdy" secondAttribute="trailing" constant="54" id="m8R-Xn-pV5"/>
+                            <constraint firstItem="o5J-0j-vdy" firstAttribute="leading" secondItem="7ZB-CS-7sn" secondAttribute="leadingMargin" constant="33" id="KB5-yN-Fgz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ocI-em-2W1" secondAttribute="trailing" constant="18" id="RpD-5X-ymO"/>
+                            <constraint firstItem="tiu-kL-Glh" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="234" id="d95-rf-Ozh"/>
+                            <constraint firstItem="tiu-kL-Glh" firstAttribute="leading" secondItem="7ZB-CS-7sn" secondAttribute="leadingMargin" constant="33" id="dU0-Ur-IaU"/>
+                            <constraint firstItem="o5J-0j-vdy" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="46" id="eL2-kM-NdO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LuB-qc-KGr" secondAttribute="trailing" constant="18" id="qwL-GL-TxV"/>
+                            <constraint firstItem="LuB-qc-KGr" firstAttribute="top" secondItem="Evi-mf-Mbj" secondAttribute="bottom" constant="46" id="zGJ-BB-uZq"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="o5J-0j-vdy"/>
                                 <exclude reference="LuB-qc-KGr"/>
                                 <exclude reference="AYb-Ly-Px1"/>
-                                <exclude reference="ocI-em-2W1"/>
                                 <exclude reference="tiu-kL-Glh"/>
+                                <exclude reference="ocI-em-2W1"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="9c7-cd-f0Z"/>
-                                <exclude reference="C8A-NT-UsZ"/>
-                                <exclude reference="kGw-S1-GpQ"/>
-                                <exclude reference="m8R-Xn-pV5"/>
-                                <exclude reference="4dM-UN-av2"/>
-                                <exclude reference="PQq-Bq-qVM"/>
-                                <exclude reference="ECp-7P-GHI"/>
-                                <exclude reference="Fac-Mu-oYY"/>
+                                <exclude reference="KB5-yN-Fgz"/>
+                                <exclude reference="eL2-kM-NdO"/>
+                                <exclude reference="qwL-GL-TxV"/>
+                                <exclude reference="zGJ-BB-uZq"/>
+                                <exclude reference="d95-rf-Ozh"/>
+                                <exclude reference="dU0-Ur-IaU"/>
+                                <exclude reference="5Sj-h3-fdS"/>
+                                <exclude reference="RpD-5X-ymO"/>
                                 <exclude reference="8xZ-Nz-O2l"/>
                                 <exclude reference="BPG-iu-F5q"/>
                             </mask>
@@ -190,18 +202,18 @@
                                 <include reference="o5J-0j-vdy"/>
                                 <include reference="LuB-qc-KGr"/>
                                 <include reference="AYb-Ly-Px1"/>
-                                <include reference="ocI-em-2W1"/>
                                 <include reference="tiu-kL-Glh"/>
+                                <include reference="ocI-em-2W1"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9c7-cd-f0Z"/>
-                                <include reference="C8A-NT-UsZ"/>
-                                <include reference="kGw-S1-GpQ"/>
-                                <include reference="m8R-Xn-pV5"/>
-                                <include reference="4dM-UN-av2"/>
-                                <include reference="PQq-Bq-qVM"/>
-                                <include reference="ECp-7P-GHI"/>
-                                <include reference="Fac-Mu-oYY"/>
+                                <include reference="KB5-yN-Fgz"/>
+                                <include reference="eL2-kM-NdO"/>
+                                <include reference="qwL-GL-TxV"/>
+                                <include reference="zGJ-BB-uZq"/>
+                                <include reference="d95-rf-Ozh"/>
+                                <include reference="dU0-Ur-IaU"/>
+                                <include reference="5Sj-h3-fdS"/>
+                                <include reference="RpD-5X-ymO"/>
                                 <include reference="8xZ-Nz-O2l"/>
                                 <include reference="BPG-iu-F5q"/>
                             </mask>
