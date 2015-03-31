@@ -22,7 +22,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        changeRecordingIndicator("Tap to record a short audio", hidden: false)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,15 +33,20 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
+        // draw the init state -- allow user to record
+        recordButton.enabled = true
         stopRecordingButton.hidden = true
+        changeRecordingIndicator("Tap to record a short audio", hidden: false)
     }
 
     @IBAction func recordAudio(sender: AnyObject) {
+        // Reverse the init state: disable record button, show recording msg, show stop button
         stopRecordingButton.hidden = false
-        println("in recordAudio")
-        recordingInProgress.hidden = false
+//        println("in recordAudio")
+        changeRecordingIndicator("Recording...", hidden: false)
+        recordButton.enabled = false
         
-        // TODO: record the user's voice
+        // record the user's voice
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let currentDateTime = NSDate()
         
@@ -49,7 +56,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         var pathArray = [dirPath, recordingName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
         
-        println(filePath)
+//        println(filePath)
         
         // setup audio session
         var avsession = AVAudioSession.sharedInstance()
@@ -63,11 +70,17 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     
+    func changeRecordingIndicator(message:String, hidden:Bool) {
+        recordingInProgress.text = message
+        recordingInProgress.hidden = hidden
+    }
+    
     
     @IBAction func stopAudio (sender: AnyObject) {
         
-        recordingInProgress.hidden = true
-        // TODO: stop recording and save it
+        //recordingInProgress.hidden = true
+        changeRecordingIndicator("unused", hidden: true)
+        // stop recording and save it
         audioRecorder.stop()
         // deact AV session
         var audiosession = AVAudioSession.sharedInstance()
@@ -88,15 +101,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     
-    // * MARK *   Delegate method
+    // MARK: - Delegate method
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
         if(flag) {
             //  1. Save the recorded audio
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
-        
+            recordedAudio = RecordedAudio(filePathUrl: recorder.url!, title: recorder.url!.lastPathComponent!)
+            
         
             // 2. Move to next scene, aka perform segue
             // this is the name of our segue b/w the two ViewControllers
