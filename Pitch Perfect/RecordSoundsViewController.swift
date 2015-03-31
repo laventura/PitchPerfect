@@ -42,7 +42,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func recordAudio(sender: AnyObject) {
         // Reverse the init state: disable record button, show recording msg, show stop button
         stopRecordingButton.hidden = false
-//        println("in recordAudio")
         changeRecordingIndicator("Recording...", hidden: false)
         recordButton.enabled = false
         
@@ -56,7 +55,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         var pathArray = [dirPath, recordingName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
         
-//        println(filePath)
         
         // setup audio session
         var avsession = AVAudioSession.sharedInstance()
