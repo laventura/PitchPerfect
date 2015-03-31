@@ -31,9 +31,6 @@ class PlaySoundsViewController: UIViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     // stop all audio and reset
     func stopAllAudio() {

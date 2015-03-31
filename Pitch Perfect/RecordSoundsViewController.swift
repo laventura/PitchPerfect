@@ -27,10 +27,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func viewDidAppear(animated: Bool) {
         // draw the init state -- allow user to record
@@ -76,7 +72,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func stopAudio (sender: AnyObject) {
         
-        //recordingInProgress.hidden = true
         changeRecordingIndicator("unused", hidden: true)
         // stop recording and save it
         audioRecorder.stop()
@@ -90,7 +85,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         if (segue.identifier == "goToNextView") {
             let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
             
-            // sender if the object that initiated the segue (i.e. recordedAudio in our case)
+            // sender is the object that initiated the segue (i.e. recordedAudio in our case)
             let recordedDataToPlay = sender as RecordedAudio
             // pass it on to our next ViewController
             playSoundsVC.receivedAudio = recordedDataToPlay
@@ -106,7 +101,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             //  1. Save the recorded audio
             recordedAudio = RecordedAudio(filePathUrl: recorder.url!, title: recorder.url!.lastPathComponent!)
             
-        
             // 2. Move to next scene, aka perform segue
             // this is the name of our segue b/w the two ViewControllers
             self.performSegueWithIdentifier("goToNextView", sender: recordedAudio)
