@@ -62,36 +62,72 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func playChipmunkEffect(sender: AnyObject) {
-        playAudioWithVariablePitch(1000)
+        // ORIGINAL
+        // playAudioWithVariablePitch(1000)
+        // create some effect (higher pitch) with UnitTimePitch
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = 1000     // chipmunk: high pitch effect
+        
+        playEffect(changePitchEffect)
+
      }
     
     @IBAction func playDarthEffect(sender: AnyObject) {
-        playAudioWithVariablePitch(-1000)
+        //// playAudioWithVariablePitch(-1000)
+        
+        // create some effect (higher pitch) with UnitTimePitch
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = -1000     // DARTH effect: low pitch
+        
+        playEffect(changePitchEffect)
+
+        
     }
     
-    // helper func to play variable pitch sound effects
-    func playAudioWithVariablePitch(pitch: Float) {
-       
+    // generate a reasonable echo without overwhelming the user
+    @IBAction func playEchoEffect(sender: UIButton) {
+        var echoEffectNode = AVAudioUnitDelay()
+        echoEffectNode.delayTime = 0.08     // 80 ms
+        echoEffectNode.feedback = 40        // 40%
+        
+        playEffect(echoEffectNode)
+    }
+    
+    // reverb effect
+    @IBAction func playReverbEffect(sender: UIButton) {
+        // create Reverb effect
+        var reverb = AVAudioUnitReverb()
+        reverb.wetDryMix = Float(80.0)      // stronger mix of effect
+        reverb.loadFactoryPreset(AVAudioUnitReverbPreset.LargeChamber)
+        
+        playEffect(reverb)
+        
+    }
+    
+    
+    // helper func to play effect based on given effectNode
+    func playEffect(effectNode: AVAudioNode) {
         stopAllAudio()
         
         // create AudioPlayerNode
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
-        // create some effect (higher pitch) with UnitTimePitch
-        var changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
+        // attach the audioNode supplied to our engine
+        audioEngine.attachNode(effectNode)
         
         // connect the nodes
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        audioEngine.connect(audioPlayerNode, to: effectNode, format: nil)
+        audioEngine.connect(effectNode, to: audioEngine.outputNode, format: nil)
         
         // play it finally - schedule the File to play
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         audioEngine.startAndReturnError(nil)
         audioPlayerNode.play()
+        
+        
     }
+
     
 
 }
